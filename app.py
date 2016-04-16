@@ -19,7 +19,7 @@ def hello():
 
 	return 'Hello World!'
 
-@app.route("/transcribed_audio")
+@app.route("/transcribed_audio", methods=["POST"])
 def transcribed_audio():
 	return request.json
 
