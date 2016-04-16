@@ -1,7 +1,7 @@
-from itty import *
+from itty import get, run_itty
 
 @get('/')
-def simple_post(request):
-    return open('testout.html', 'r').read()
+def index(request):
+    return 'Hello World!'
 
 run_itty()
