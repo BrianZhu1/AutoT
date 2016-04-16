@@ -14,6 +14,7 @@ def hello():
 	    transcriptionOutFormat: 'json'
 	    }
 	);
+	return 'Hello World!'
 
 @app.route("/transcribed_audio")
 def transcribed_audio:
