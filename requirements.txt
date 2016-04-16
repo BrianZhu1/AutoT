@@ -1,2 +1,1 @@
-dj-database-url==0.4.0
-Django==1.9.2
+Flask==0.7.2
