@@ -1,7 +1,7 @@
 from itty import *
 from tropo import Tropo
 
-@post('/')
+@get('/')
 def index(request):
 
     t = Tropo()
