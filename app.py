@@ -20,7 +20,7 @@ def hello():
     # calls function to schedule outgoing calls
     # TODO: how cronjob?
     
-    number = "8016106014"
+    number = "+18016106014"
 
     S = Session(request.data)
     T = Tropo()
