@@ -29,7 +29,7 @@ def transcribed_audio:
 
 @app.route("/")
 def hello():
-    t.call(to="14084827871")
+    t.call(to="+14084827871")
     t.say("Welcome to speed therapy!")
     t.record(say="Tell us how you feel in fifteen minutes or less!", \
         beep=False, \
