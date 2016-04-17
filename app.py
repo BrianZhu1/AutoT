@@ -1,8 +1,9 @@
+import requests
 import os
 from flask import Flask
 app = Flask(__name__)
 
-"""
+junk = """
 @app.route("/")
 def hello():
     var callerID = currentCall.callerID;
@@ -30,7 +31,8 @@ def hello():
     my_message = "the+sky+is+falling"
     base_string = "https://api.tropo.com/1.0/sessions?action=create&"
     http_string = base_string + "token=" + my_token + "&numberToDial=" + my_num_to_dial + "&customerName=" + my_name + "&msg=" + my_message
-    r = requests.get(http_string)
+    
+    requests.get(http_string)
     return "Hello from Python!"
 
 
