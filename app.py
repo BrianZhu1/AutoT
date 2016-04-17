@@ -22,7 +22,7 @@ def hello():
     
     S = Session(request.data)
     T = Tropo()
-    number = "+18016106014"
+    number = "+14084827871"
     # T.call(to=number)
     # T.say("Welcome to speed therapy!")
     # T.record(say="Tell us how you feel in fifteen minutes or less!", \
@@ -31,7 +31,7 @@ def hello():
     #     transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
     #     format='json'
     #     )
-    traverse_menu(number, S, T)
+    scrape_menu(number, S, T)
     return T.RenderJson()
 
 def traverse_menu(phone, S, T): #it will find the next level of dtmf tones
@@ -75,7 +75,41 @@ def traverse_menu(phone, S, T): #it will find the next level of dtmf tones
     #find the next level of dtmf tones somehow and append to option_list ()
 
     # TODO: some logic may be needed extra to authenticate.
-    # 
+def scrape_menu(phone, S, T):
+    base_url = "https://autotapp.firebaseio.com/menus/bot/"
+    T.call(to=phone + ";pause=4500ms")
+
+    _scrape_menu(phone, S, T, base_url, "")
+
+def _scrape_menu(phone, S, T, base_url, seq):
+    T.call(to=phone +  seq + ";pause=4500ms")
+    T.record(say="", \
+        beep=False, \
+        maxTime=10, \
+        transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
+        format='json'
+        )
+
+    sleep(3000)
+
+    T.hangup()
+
+    # split the menu options, push them to fb, or decides it's a leaf.
+    # base case
+    
+    # recursive case
+    optionsCorpus = requests.get('https://autotapp.firebaseio.com/results.json').json()
+    optionList = filter(None, [option.strip(" , or and").split()[1:] \
+        for option in optionsCorpus.lower().split("press")])
+
+    patch_url = base_url + '/'.join(seq.split("ppppppp")) + ".json"
+    print path_url
+    requests.put(path_url, data=json.dumps(optionList))
+
+    for index, _ in enumerate(optionList):
+        _scrape_menu(phone, S, T, base_url, seq + "ppppppp" + index)
+
+
 
 
 @app.route("/transcribe", methods=["POST"])
