@@ -38,7 +38,7 @@ def hello():
         t.record(say="Tell us how you feel in fifteen minutes or less!", \
             beep=False, \
             maxTime=8, \
-            # transcription="http://autotapp.herokuapp.com/transcribe", \
+            transcription="http://autotapp.herokuapp.com/transcribe", \
             format='json'
             )
         # my_token = "436c63746752724667426b4f4476635275426c614763666a5774724776504e4f6c4a41514c56544246527248"
