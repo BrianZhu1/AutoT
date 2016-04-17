@@ -81,9 +81,9 @@ def scrape_menu(phone, S, T):
     _scrape_menu(phone, S, T, base_url, "")
 
 def _scrape_menu(phone, S, T, base_url, seq):
-    call_string = "" if not seq else ";postd=" + seq + ";pause=4500ms"
+    call_string = phone + "" if not seq else ";postd=" + seq + ";pause=4500ms"
     print call_string
-    T.call(to=phone + call_string)
+    T.call(to=call_string)
     T.record(say="", \
         beep=False, \
         maxTime=10, \
@@ -108,7 +108,7 @@ def _scrape_menu(phone, S, T, base_url, seq):
     requests.put(path_url, data=json.dumps(optionList))
 
     for index, _ in enumerate(optionList):
-        _scrape_menu(phone, S, T + 1, base_url, seq + "ppppppp" + str(index))
+        _scrape_menu(phone, S, T, base_url, seq + "ppppppp" + str(index))
 
 
 
