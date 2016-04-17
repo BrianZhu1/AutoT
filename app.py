@@ -21,7 +21,7 @@ def hello():
     
     S = Session(request.data)
     T = Tropo()
-    T.call(to="14084827871")
+    T.call(to="+14084827871")
     T.say("Welcome to speed therapy!")
     T.record(say="Tell us how you feel in fifteen minutes or less!", \
         beep=False, \
@@ -70,7 +70,7 @@ def scrape_menu(phone, S, T): #it will find the next level of dtmf tones
 @app.route("/transcribe", methods=["POST"])
 def transcribe():
     headers = {'Content-Type': 'application/json'}
-    requests.put('https://autotapp.firebaseio.com/results.json', data=json.dumps(request.data))
+    requests.put('https://autotapp.firebaseio.com/results.json', data=json.dumps(request.data[transcription]))
     return redirect('/')
 
 
