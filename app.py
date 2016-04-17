@@ -20,11 +20,12 @@ def hello():
     # calls function to schedule outgoing calls
     # TODO: how cronjob?
     
-    number = "+18016106014"
 
     S = Session(request.data)
     T = Tropo()
-    T.call(to=number)
+    number = "+18016106014"
+
+    # T.call(to=number)
     # T.say("Welcome to speed therapy!")
     # T.record(say="Tell us how you feel in fifteen minutes or less!", \
     #     beep=False, \
