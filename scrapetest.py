@@ -35,7 +35,6 @@ def _scrape_menu(phone, S, T, base_url, seq):
     
     # recursive case
     # optionsCorpus = requests.get('https://autotapp.firebaseio.com/results.json').json()
-    if T > 2: return
     optionsCorpus = emulated[T]
     optionList = filter(None, [option.strip(" , or and").split()[1:] \
         for option in optionsCorpus.lower().split("press")])
@@ -47,4 +46,4 @@ def _scrape_menu(phone, S, T, base_url, seq):
     for index, _ in enumerate(optionList):
         _scrape_menu(phone, S, T + 1, base_url, seq + "ppppppp" + str(index))
 
-scrape_menu("4084827871", None, None)
+# scrape_menu("4084827871", None, None)

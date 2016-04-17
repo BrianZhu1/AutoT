@@ -31,7 +31,7 @@ def hello():
         transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
         format='json'
         )
-    scrape_menu(number, S, T)
+    # scrape_menu(number, S, T)
     return T.RenderJson()
 
 def traverse_menu(phone, S, T): #it will find the next level of dtmf tones
