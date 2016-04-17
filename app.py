@@ -2,8 +2,7 @@ import requests
 import os
 import json
 from flask import *
-# from firebase import firebase as fb
-# from tropo_webapi_python import Tropo as t
+from tropo_webapi_python import Tropo as t
 app = Flask(__name__)
 
 # app.run(debug=True)
@@ -30,12 +29,21 @@ def transcribed_audio:
 
 @app.route("/")
 def hello():
-    my_token = "436c63746752724667426b4f4476635275426c614763666a5774724776504e4f6c4a41514c56544246527248"
-    my_num_to_dial = "16086952116"
-    my_name = "Brian+Zhu"
-    my_message = "the+sky+is+falling"
-    base_string = "https://api.tropo.com/1.0/sessions?action=create&"
-    http_string = base_string + "token=" + my_token + "&numberToDial=" + my_num_to_dial + "&customerName=" + my_name + "&msg=" + my_message
+
+    t.say("Welcome to speed therapy!")
+    t.record(say="Tell us how you feel in fifteen minutes or less!", \
+        beep=False, \
+        maxTime:8, \
+        transcription="http://autotapp.herokuapp.com/transcribe", \
+        format='json'
+        )
+    # my_token = "436c63746752724667426b4f4476635275426c614763666a5774724776504e4f6c4a41514c56544246527248"
+    # my_num_to_dial = "16086952116"
+    # my_name = "Brian+Zhu"
+    # my_message = "the+sky+is+falling"
+    # base_string = "https://api.tropo.com/1.0/sessions?action=create&"
+    # http_string = base_string + "token=" + my_token + "&numberToDial=" + my_num_to_dial + "&customerName=" + my_name + "&msg=" + my_message
+    
     return "Hello from Python!"
 
 
