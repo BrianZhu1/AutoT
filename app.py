@@ -27,30 +27,19 @@ def transcribed_audio:
 
 """
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["POST"])
 def hello():
-    if request.method == "POST":
-        print request.data
-        s = Session(request.data)
-        t = Tropo()
-        t.call(to="14084827871")
-        t.say("Welcome to speed therapy!")
-        t.record(say="Tell us how you feel in fifteen minutes or less!", \
-            beep=False, \
-            maxTime=8, \
-            transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
-            format='json'
-            )
-        # my_token = "436c63746752724667426b4f4476635275426c614763666a5774724776504e4f6c4a41514c56544246527248"
-        # my_num_to_dial = "16086952116"
-        # my_name = "Brian+Zhu"
-        # my_message = "the+sky+is+falling"
-        # base_string = "https://api.tropo.com/1.0/sessions?action=create&"
-        # http_string = base_string + "token=" + my_token + "&numberToDial=" + my_num_to_dial + "&customerName=" + my_name + "&msg=" + my_message
-        return t.RenderJson()
-        
-    if request.method =="GET":
-        return "Hello from Python!"
+    s = Session(request.data)
+    t = Tropo()
+    t.call(to="14084827871")
+    t.say("Welcome to speed therapy!")
+    t.record(say="Tell us how you feel in fifteen minutes or less!", \
+        beep=False, \
+        maxTime=8, \
+        transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
+        format='json'
+        )
+    return t.RenderJson()
 
 
 # THE FOLLOWING RESIDES IN ITS OWN APPLICATION.
