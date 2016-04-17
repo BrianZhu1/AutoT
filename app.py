@@ -77,7 +77,7 @@ def hello():
 @app.route("/transcribe", methods=["POST"])
 def transcribe():
     headers = {'Content-Type': 'application/json'}
-    requests.put('https://autotapp.firebaseio.com/results.json', data=json.dumps(request.data[transcription]))
+    requests.put('https://autotapp.firebaseio.com/results.json', data=json.dumps(request.data["transcription"]))
     return redirect('/')
 
 
