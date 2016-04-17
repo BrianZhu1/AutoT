@@ -43,7 +43,7 @@ def hello():
 def transcribe():
     # fb = fb.FirebaseApplication("https://autotapp.firebaseio.com", None)
     # posted = fb.post('/transcriptions', request.form, {'print': 'pretty'})
-    return request.form
+    return request.form['test']
 
 @app.route("/transcribe")
 def transcribe():
