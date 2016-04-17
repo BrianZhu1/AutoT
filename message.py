@@ -57,23 +57,23 @@ def findIndex(words, phrase):
             match = (phrase.index(word), word)
     return phrase[match[0] + 1] if match else match
 
-init = str(S.initialText)
-# initial = raw_input("").split()
-time = findIndex(["at"], init.split())
-place = findIndex(["call", "with"], init.split())
+# init = str(S.initialText)
+# # initial = raw_input("").split()
+# time = findIndex(["at"], init.split())
+# place = findIndex(["call", "with"], init.split())
 
-say("Welcome to AuTo&T.")
+# say("Welcome to AuTo&T.")
 
-while not place:
-    T.ask(T.Choices("[ANY]"), say="")
-    place = T.ask( T.Choices("[ANY]"), say="Who do you want us to call?\n").value
-while not time:
-    T.ask(T.Choices("[ANY]"), say="")
-    time = T.ask( T.Choices("[ANY]"), say="At what time do you want us to set up the phone call?\n").value
+# while not place:
+#     T.ask(T.Choices("[ANY]"), say="")
+#     place = T.ask( T.Choices("[ANY]"), say="Who do you want us to call?\n").value
+# while not time:
+#     T.ask(T.Choices("[ANY]"), say="")
+#     time = T.ask( T.Choices("[ANY]"), say="At what time do you want us to set up the phone call?\n").value
     
-ask(T.Choices("[ANY]"), say="")
-if place in mappings:
-    T.ask( T.Choices("[ANY]"), say="What were you looking to do with " + place + " at " + time + "?\n")
-    T.on(event="continue", next=answerHandler)
-else:
-    say("I've never encountered this company so you might expereince some extra setup time")
+# ask(T.Choices("[ANY]"), say="")
+# if place in mappings:
+#     T.ask( T.Choices("[ANY]"), say="What were you looking to do with " + place + " at " + time + "?\n")
+#     T.on(event="continue", next=answerHandler)
+# else:
+#     say("I've never encountered this company so you might expereince some extra setup time")
