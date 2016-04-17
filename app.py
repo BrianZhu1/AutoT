@@ -25,13 +25,13 @@ def hello():
     S = Session(request.data)
     T = Tropo()
     T.call(to=number)
-    T.say("Welcome to speed therapy!")
-    T.record(say="Tell us how you feel in fifteen minutes or less!", \
-        beep=False, \
-        maxTime=8, \
-        transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
-        format='json'
-        )
+    # T.say("Welcome to speed therapy!")
+    # T.record(say="Tell us how you feel in fifteen minutes or less!", \
+    #     beep=False, \
+    #     maxTime=8, \
+    #     transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
+    #     format='json'
+    #     )
     #scrape_menu(number, S, T)
     traverse_menu(number, S, T)
     return T.RenderJson()
@@ -83,7 +83,7 @@ def scrape_menu(phone, S, T):
     rscrape_menu(phone, S, T, base_url, "")
 
 def rscrape_menu(phone, S, T, base_url, seq):
-    call_string = phone #+ "" if not seq else ";postd=" + seq + ";pause=4500ms"
+    call_string = phone + "" if not seq else ";postd=" + seq + ";pause=4500ms"
     print call_string
     T.call(to= "+" + call_string)  
     T.record(say="", \
