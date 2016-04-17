@@ -42,8 +42,8 @@ def hello():
     T.say("Welcome to AuTo&T.")
 
     while not place:
-        T.ask(choices= Choices("[ANY]").obj, say="")
-        place = T.ask(choices = Choices("[ANY]").obj, say="Who do you want us to call?\n").value
+        T.ask(choices= "[ANY]", say="")
+        place = T.ask(choices ="[ANY]", say="Who do you want us to call?\n").value
     # while not time:
     #     T.ask( Choices("[ANY]").obj, say="")
     #     time = T.ask(Choices("[ANY]").obj, say="At what time do you want us to set up the phone call?\n").value
