@@ -5,19 +5,35 @@ from flask import *
 from tropo_webapi_python import Tropo, Session
 app = Flask(__name__, static_url_path='')
 
+S = T = None
+
 @app.route("/", methods=["POST"])
 def hello():
-    s = Session(request.data)
-    t = Tropo()
-    t.call(to="14084827871")
-    t.say("Welcome to speed therapy!")
-    t.record(say="Tell us how you feel in fifteen minutes or less!", \
+    # This main endpoint receives the invoking user action: text message.
+    # Needs: # of company? are options from company already cached?
+    
+    # retrieves from cache / tells user to wait while it does / etc. ??
+    # sends options to user / some dialogue... 
+    
+    # calls function to schedule outgoing calls
+    # TODO: how cronjob?
+    
+    S = Session(request.data)
+    T = Tropo()
+    T.call(to="14084827871")
+    T.say("Welcome to speed therapy!")
+    T.record(say="Tell us how you feel in fifteen minutes or less!", \
         beep=False, \
         maxTime=8, \
         transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
         format='json'
         )
     return t.RenderJson()
+
+def scrape_menu(phone, s, t):
+    T.call(to=phone)
+    # TODO: some logic may be needed extra to authenticate.
+    # 
 
 @app.route("/transcribe", methods=["POST"])
 def transcribe():
