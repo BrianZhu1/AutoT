@@ -7,7 +7,7 @@ from firebase_abstractions import *
 from tropo_webapi_python import Tropo, Session
 app = Flask(__name__, static_url_path='')
 
-S = T = None
+T = S = None
 
 @app.route("/", methods=["POST"])
 def hello():
@@ -22,7 +22,7 @@ def hello():
     
     S = Session(request.data)
     T = Tropo()
-    # T.call(to="+14084827871")
+    T.call(to="+14084827871")
     T.say("Welcome to speed therapy!")
     T.record(say="Tell us how you feel in fifteen minutes or less!", \
         beep=False, \
@@ -30,7 +30,7 @@ def hello():
         transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
         format='json'
         )
-    return t.RenderJson()
+    return T.RenderJson()
 
 # def scrape_menu(phone, S, T): #it will find the next level of dtmf tones
         
