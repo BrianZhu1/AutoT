@@ -81,6 +81,7 @@ def scrape_menu(phone, S, T):
     _scrape_menu(phone, S, T, base_url, "")
 
 def _scrape_menu(phone, S, T, base_url, seq):
+    call_string = ";pause=4500ms" if not seq else ";postd=" + seq + ";pause=4500ms"
     T.call(to=phone +  ";postd=" + seq + ";pause=4500ms")
     T.record(say="", \
         beep=False, \
