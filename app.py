@@ -5,20 +5,20 @@ app = Flask(__name__)
 """
 @app.route("/")
 def hello():
-	var callerID = currentCall.callerID;
+    var callerID = currentCall.callerID;
 
-	say("Welcome to speed therapy!");
-	record("Tell us how you feel in fifteen minutes or less!", {
-	    beep:false,
-	    maxTime:900,
-	    transcriptionOutURI: "http://autotapp.herokuapp.com/transcribed_audio",
-	    transcriptionOutFormat: 'json'
-	    }
-	);
+    say("Welcome to speed therapy!");
+    record("Tell us how you feel in fifteen minutes or less!", {
+        beep:false,
+        maxTime:900,
+        transcriptionOutURI: "http://autotapp.herokuapp.com/transcribed_audio",
+        transcriptionOutFormat: 'json'
+        }
+    );
 
 @app.route("/transcribed_audio")
 def transcribed_audio:
-	return request.json
+    return request.json
 
 """
 
