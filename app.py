@@ -27,7 +27,7 @@ def transcribed_audio:
 
 """
 
-@app.route("/")
+@app.route("/", methods=["POST"])
 def hello():
     t.call(to="+14084827871")
     t.say("Welcome to speed therapy!")
