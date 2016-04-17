@@ -1,6 +1,6 @@
 import requests
 import os
-from flask import Flask, request
+from flask import *
 from firebase import firebase as fb
 # from tropo_webapi_python import Tropo as t
 app = Flask(__name__)
@@ -41,8 +41,7 @@ def hello():
 def transcribe():
     fb = fb.FirebaseApplication("https://autotapp.firebaseio.com", None)
     posted = fb.post('/transcriptions', request.get_json())
-    pass
-    #return render_template('testout.html', jsoncode = request.get_json())
+    return render_template('testout.html', jsoncode = request.get_json())
 
 
 if __name__ == "__main__":
