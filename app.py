@@ -30,7 +30,7 @@ def transcribed_audio:
 @app.route("/", methods=["GET", "POST"])
 def hello():
     if request.method == "POST":
-        s = Session(request.get_json())
+        s = Session(request.data)
         t = Tropo()
         t.call(to="14084827871")
         t.say("Welcome to speed therapy!")
