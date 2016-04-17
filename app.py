@@ -39,9 +39,9 @@ def hello():
 # THE FOLLOWING RESIDES IN ITS OWN APPLICATION.
 @app.route("/transcribe", methods=["POST"])
 def transcribe():
-    # fb = fb.FirebaseApplication("https://autotapp.firebaseio.com", None)
-    # posted = fb.post('/transcriptions', request.form, {'print': 'pretty'})
-    return requests.get_json()
+    fb = fb.FirebaseApplication("https://autotapp.firebaseio.com", None)
+    posted = fb.post('/transcriptions', request.form, {'print': 'pretty'})
+    pass
 
 
 if __name__ == "__main__":
