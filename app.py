@@ -30,6 +30,7 @@ def transcribed_audio:
 @app.route("/", methods=["GET", "POST"])
 def hello():
     if request.method == "POST":
+        print request.data
         s = Session(request.data)
         t = Tropo()
         t.call(to="14084827871")
@@ -46,7 +47,7 @@ def hello():
         # my_message = "the+sky+is+falling"
         # base_string = "https://api.tropo.com/1.0/sessions?action=create&"
         # http_string = base_string + "token=" + my_token + "&numberToDial=" + my_num_to_dial + "&customerName=" + my_name + "&msg=" + my_message
-        return redirect('/')
+        return t.RenderJson()
         
     if request.method =="GET":
         return "Hello from Python!"
