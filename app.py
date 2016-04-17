@@ -20,17 +20,20 @@ def hello():
     # calls function to schedule outgoing calls
     # TODO: how cronjob?
     
+    number = "8016106014"
+
     S = Session(request.data)
     T = Tropo()
-    # T.call(to=number)
-    # T.say("Welcome to speed therapy!")
-    # T.record(say="Tell us how you feel in fifteen minutes or less!", \
-    #     beep=False, \
-    #     maxTime=8, \
-    #     transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
-    #     format='json'
-    #     )
-    scrape_menu(number, S, T)
+    T.call(to=number)
+    T.say("Welcome to speed therapy!")
+    T.record(say="Tell us how you feel in fifteen minutes or less!", \
+        beep=False, \
+        maxTime=8, \
+        transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
+        format='json'
+        )
+    #scrape_menu(number, S, T)
+    traverse_menu(number, S, T)
     return T.RenderJson()
 
 def traverse_menu(phone, S, T): #it will find the next level of dtmf tones
