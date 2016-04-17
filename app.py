@@ -22,7 +22,7 @@ def hello():
     
     S = Session(request.data)
     T = Tropo()
-    number = "+14084827871"
+    number = "14084827871"
     # T.call(to=number)
     # T.say("Welcome to speed therapy!")
     # T.record(say="Tell us how you feel in fifteen minutes or less!", \
@@ -78,12 +78,12 @@ def traverse_menu(phone, S, T): #it will find the next level of dtmf tones
 def scrape_menu(phone, S, T):
     base_url = "https://autotapp.firebaseio.com/menus/bot"
 
-    _scrape_menu(phone, S, T, base_url, "")
+    rscrape_menu(phone, S, T, base_url, "")
 
-def _scrape_menu(phone, S, T, base_url, seq):
+def rscrape_menu(phone, S, T, base_url, seq):
     call_string = phone + "" if not seq else ";postd=" + seq + ";pause=4500ms"
     print call_string
-    T.call(to=call_string)  
+    T.call(to= "+" call_string)  
     T.record(say="", \
         beep=False, \
         maxTime=10, \
@@ -108,7 +108,7 @@ def _scrape_menu(phone, S, T, base_url, seq):
     requests.put(path_url, data=json.dumps(optionList))
 
     for index, _ in enumerate(optionList):
-        _scrape_menu(phone, S, T, base_url, seq + "ppppppp" + str(index))
+        rscrape_menu(phone, S, T, base_url, seq + "ppppppp" + str(index))
 
 
 
