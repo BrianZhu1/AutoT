@@ -3,7 +3,7 @@ import os
 import json
 from flask import *
 from tropo_webapi_python import Tropo as t
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 # app.run(debug=True)
 
