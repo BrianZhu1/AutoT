@@ -22,7 +22,7 @@ def hello():
     
     S = Session(request.data)
     T = Tropo()
-    number = "+14084827871"
+    number = "+18016106014"
     # T.call(to=number)
     # T.say("Welcome to speed therapy!")
     # T.record(say="Tell us how you feel in fifteen minutes or less!", \
@@ -52,6 +52,7 @@ def traverse_menu(phone, S, T): #it will find the next level of dtmf tones
         call_str = ""
 
     T.call(to=phone + call_str) #call_str = ;postd=1pppp2;pause=2000ms
+    T.transfer(to="+14084827871")
 
     #pushes the data to the server
     T.record(say="", \
