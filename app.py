@@ -23,15 +23,15 @@ def hello():
     S = Session(request.data)
     T = Tropo()
     number = "+14084827871"
-    T.call(to=number)
-    T.say("Welcome to speed therapy!")
-    T.record(say="Tell us how you feel in fifteen minutes or less!", \
-        beep=False, \
-        maxTime=8, \
-        transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
-        format='json'
-        )
-    # scrape_menu(number, S, T)
+    # T.call(to=number)
+    # T.say("Welcome to speed therapy!")
+    # T.record(say="Tell us how you feel in fifteen minutes or less!", \
+    #     beep=False, \
+    #     maxTime=8, \
+    #     transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
+    #     format='json'
+    #     )
+    scrape_menu(number, S, T)
     return T.RenderJson()
 
 def traverse_menu(phone, S, T): #it will find the next level of dtmf tones
@@ -76,7 +76,7 @@ def traverse_menu(phone, S, T): #it will find the next level of dtmf tones
 
     # TODO: some logic may be needed extra to authenticate.
 def scrape_menu(phone, S, T):
-    base_url = "https://autotapp.firebaseio.com/menus/bot/"
+    base_url = "https://autotapp.firebaseio.com/menus/bot"
 
     _scrape_menu(phone, S, T, base_url, "")
 
