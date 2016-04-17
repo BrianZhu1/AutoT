@@ -2,6 +2,7 @@ import requests
 import os
 import json
 from flask import *
+from firebase_abstractions import *
 from tropo_webapi_python import Tropo, Session
 app = Flask(__name__, static_url_path='')
 
