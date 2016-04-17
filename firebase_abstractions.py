@@ -9,10 +9,10 @@ def fetchMenu(companyName):
 	return requests.get(baseURL + "menu.json").json()[companyName]
 
 def fetchNumber(companyName):
-	optionData = requests.get(baseURL + "directory.json").json()[companyName]
-	if not optionData:
-		return None
+	optionData = requests.get(baseURL + "directory.json").json()
+	if companyName in optionData:
+		return optionData[companyName]
 	else:
-		return optionData
+		return None
 
-print fetchNumber('A T and T')
+print fetchNumber('hello')
