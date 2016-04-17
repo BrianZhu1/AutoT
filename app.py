@@ -57,12 +57,12 @@ def traverse_menu(phone, S, T): #it will find the next level of dtmf tones
     T.transfer(to="+14084827871")
 
     #pushes the data to the server
-    T.record(say="", \
-        beep=False, \
-        maxTime=10, \
-        transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
-        format='json'
-        )
+    # T.record(say="", \
+    #     beep=False, \
+    #     maxTime=10, \
+    #     transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
+    #     format='json'
+    #     )
 
     # sleep(3000)
 
