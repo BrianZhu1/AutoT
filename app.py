@@ -5,28 +5,6 @@ from flask import *
 from tropo_webapi_python import Tropo, Session
 app = Flask(__name__, static_url_path='')
 
-# app.run(debug=True)
-
-junk = """
-@app.route("/")
-def hello():
-    var callerID = currentCall.callerID;
-
-    say("Welcome to speed therapy!");
-    record("Tell us how you feel in fifteen minutes or less!", {
-        beep:false,
-        maxTime:900,
-        transcriptionOutURI: "http://autotapp.herokuapp.com/transcribed_audio",
-        transcriptionOutFormat: 'json'
-        }   
-    );
-
-@app.route("/transcribed_audio")
-def transcribed_audio:
-    return request.json
-
-"""
-
 @app.route("/", methods=["POST"])
 def hello():
     s = Session(request.data)
@@ -41,8 +19,6 @@ def hello():
         )
     return t.RenderJson()
 
-
-# THE FOLLOWING RESIDES IN ITS OWN APPLICATION.
 @app.route("/transcribe", methods=["POST"])
 def transcribe():
     headers = {'Content-Type': 'application/json'}
