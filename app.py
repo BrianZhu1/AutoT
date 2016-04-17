@@ -35,7 +35,7 @@ def hello():
     #     format='json'
     #     )
 
-    init = str(currentCall.initialText)
+    init = str(S.initialText)
     # initial = raw_input("").split()
     time = findIndex(["at"], init.split())
     place = findIndex(["call", "with"], init.split())

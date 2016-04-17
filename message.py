@@ -57,7 +57,7 @@ def findIndex(words, phrase):
             match = (phrase.index(word), word)
     return phrase[match[0] + 1] if match else match
 
-init = str(currentCall.initialText)
+init = str(S.initialText)
 # initial = raw_input("").split()
 time = findIndex(["at"], init.split())
 place = findIndex(["call", "with"], init.split())
