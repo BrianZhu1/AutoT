@@ -37,7 +37,7 @@ def hello():
 def traverse_menu(phone, S, T): #it will find the next level of dtmf tones
         
     option_list = ["1","3", "2"] #actual values of dtmf tones
-    quadruple_p = "p"*4 #four second delay between each dtmf tone
+    quadruple_p = "pppppp" #four second delay between each dtmf tone
 
     call_str = ";postd="
 
