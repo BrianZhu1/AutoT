@@ -57,6 +57,20 @@ def findIndex(words, phrase):
             match = (phrase.index(word), word)
     return phrase[match[0] + 1] if match else match
 
+def sleep_till_future(f_minute):
+    t = datetime.datetime.today()
+    future = datetime.datetime(t.year,t.month,t.day,t.hour,f_minute)
+
+    if future.minute <= t.minute:
+        print("ERROR! Enter a valid minute in the future.")
+    else:
+        print "Current time: " + str(t.hour)+":"+str(t.minute)
+        print "Sleep until : " + str(future.hour)+":"+str(future.minute)
+
+        seconds_till_future = (future-t).seconds
+        time.sleep( seconds_till_future )
+        print "I slept for "+str(seconds_till_future)+" seconds!"
+
 # init = str(S.initialText)
 # # initial = raw_input("").split()
 # time = findIndex(["at"], init.split())
