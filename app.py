@@ -1,23 +1,24 @@
 import os
 from flask import Flask
-from tropo import *
+from tropo import Tropo
 
 app = Flask(__name__)
 
 @app.route("/")
 def hello():
+	t = Tropo()
 	# callerID = currentCall.callerID
 
-	say("Welcome to speed therapy!")
-	record("Tell us how you feel in fifteen minutes or less!", {
+	t.say("Welcome to speed therapy!")
+	t.record("Tell us how you feel in fifteen minutes or less!", {
 	    "beep":False,
 	    "maxTime":900,
 	    "transcriptionOutURI": "http://autotapp.herokuapp.com/transcribed_audio",
 	    "transcriptionOutFormat": 'json'
 	    }
 	)
-
-	return 'Hello World!'
+	
+	return render_template('testout.html')
 
 @app.route("/transcribed_audio", methods=["POST"])
 def transcribed_audio():
