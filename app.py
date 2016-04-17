@@ -21,7 +21,7 @@ def hello():
     
     S = Session(request.data)
     T = Tropo()
-    T.call(to="+14084827871")
+    # T.call(to="+14084827871")
     T.say("Welcome to speed therapy!")
     T.record(say="Tell us how you feel in fifteen minutes or less!", \
         beep=False, \
