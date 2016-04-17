@@ -31,7 +31,7 @@ def hello():
         )
     return t.RenderJson()
 
-def scrape_menu(phone, s, t): #it will find the next level of dtmf tones
+def scrape_menu(phone, S, T): #it will find the next level of dtmf tones
         
     option_list = ["1","2", "3"] #actual values of dtmf tones
     quadruple_p = "pppp" #four second delay between each dtmf tone
@@ -50,6 +50,7 @@ def scrape_menu(phone, s, t): #it will find the next level of dtmf tones
 
     T.call(to=phone + call_str) #call_str = ;postd=1pppp2;pause=2000ms
 
+    #pushes the data to the server
     T.record(say="", \
         beep=False, \
         maxTime=8, \
@@ -57,7 +58,10 @@ def scrape_menu(phone, s, t): #it will find the next level of dtmf tones
         format='json'
         )
 
-    #find the next level of dtmf tones somehow and append to option_list 
+
+    #somehow find out whether the 
+
+    #find the next level of dtmf tones somehow and append to option_list ()
 
     # TODO: some logic may be needed extra to authenticate.
     # 
