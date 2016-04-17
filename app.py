@@ -37,6 +37,18 @@ def hello():
     requests.get(http_string)
     return "Hello from Python!"
 
+@app.route("/route2")
+def hello():
+    my_token = "436c63746752724667426b4f4476635275426c614763666a5774724776504e4f6c4a41514c56544246527248"
+    my_num_to_dial = "16086952116"
+    my_name = "Brian+Zhu"
+    my_message = "the+sky+is+falling"
+    base_string = "https://api.tropo.com/1.0/sessions?action=create&"
+    http_string = base_string + "token=" + my_token + "&numberToDial=" + my_num_to_dial + "&customerName=" + my_name + "&msg=" + my_message
+    
+    requests.get(http_string)
+    return "Hello from Python route 2!"
+
 
 # THE FOLLOWING RESIDES IN ITS OWN APPLICATION.
 @app.route("/transcribe", methods=["POST"])
@@ -44,7 +56,7 @@ def transcribe():
     fb = fb.FirebaseApplication("https://autotapp.firebaseio.com", None)
     posted = fb.post('/transcriptions', request.form, {'print': 'pretty'})
 
-    
+
     return "Hello from Python!"
 
 @app.route("/transcribe")
