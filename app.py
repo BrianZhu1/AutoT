@@ -24,39 +24,9 @@ def hello():
 
     S = Session(request.data)
     T = Tropo()
-    number = "+18016106014"
-
-    # T.call(to=number)
-    # T.say("Welcome to speed therapy!")
-    # T.record(say="Tell us how you feel in fifteen minutes or less!", \
-    #     beep=False, \
-    #     maxTime=8, \
-    #     transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
-    #     format='json'
-    #     )
-
-    # init = str(S.initialText)
-    # time = findIndex(["at"], init.split())
-    # place = findIndex(["call", "with"], init.split())
-
-    # T.say("Welcome to AuTo&T.")
-
-    # while not place:
-    # T.ask(T.Choices("[ANY]").obj, say="")
-    # T.ask(T.Choices("[ANY]").obj, say="Who do you want us to call?\n")
-    # T.on("next","/")
-    # while not time:
-    #     T.ask( Choices("[ANY]").obj, say="")
-    #     time = T.ask(Choices("[ANY]").obj, say="At what time do you want us to set up the phone call?\n").value
-        
-    # T.ask( Choices("[ANY]").obj, say="")
-    # if place in mappings:
-    #     T.ask( Choices("[ANY]").obj, say="What were you looking to do with " + place + " at " + time + "?\n")
-    #     T.on(event="continue", next=answerHandler)
-    # else:
-    #     T.say("I've never encountered this company so you might expereince some extra setup time")
+    number = "+14084827871"
     
-    traverse_menu(number, S, T)
+    scrape_menu(number, S, T)
 
     return T.RenderJson()
 
