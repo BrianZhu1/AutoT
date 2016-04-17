@@ -33,7 +33,7 @@ def hello():
     t.say("Welcome to speed therapy!")
     t.record(say="Tell us how you feel in fifteen minutes or less!", \
         beep=False, \
-        maxTime:8, \
+        maxTime=8, \
         transcription="http://autotapp.herokuapp.com/transcribe", \
         format='json'
         )
