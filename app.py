@@ -5,6 +5,7 @@ from time import sleep
 from flask import *
 from firebase_abstractions import *
 from tropo_webapi_python import Tropo, Session
+from message import *
 app = Flask(__name__, static_url_path='')
 
 T = S = None
@@ -33,8 +34,30 @@ def hello():
     #     transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
     #     format='json'
     #     )
-    #scrape_menu(number, S, T)
-    traverse_menu(number, S, T)
+
+    init = str(currentCall.initialText)
+    # initial = raw_input("").split()
+    time = findIndex(["at"], init.split())
+    place = findIndex(["call", "with"], init.split())
+
+    say("Welcome to AuTo&T.")
+
+    while not place:
+        T.ask(say="", T.Choices("[ANY]"))
+        place = T.ask(say="Who do you want us to call?\n", T.Choices("[ANY]")).value
+    while not time:
+        T.ask(say="", T.Choices("[ANY]"))
+        time = T.ask(say="At what time do you want us to set up the phone call?\n", T.Choices("[ANY]")).value
+        
+    ask(say="", T.Choices("[ANY]"))
+    if place in mappings:
+        T.ask(say="What were you looking to do with " + place + " at " + time + "?\n", T.Choices("[ANY]"))
+        T.on(event="continue", next=answerHandler)
+    else:
+        say("I've never encountered this company so you might expereince some extra setup time")
+    
+    # traverse_menu(number, S, T)
+
     return T.RenderJson()
 
 def traverse_menu(phone, S, T): #it will find the next level of dtmf tones

@@ -37,20 +37,20 @@ def findMatch(cnt, dct, strng):
     return max(map(lambda (key, val): findMatch(cnt + 1, val, strng) if key in strng else (0, None), dct.iteritems()), key = lambda v: v[0])
 
 def inputSequence(seq):
-    say(seq)
+    T.say(seq)
 
 def answerHandler(ans):
     company = mappings[place]
     path, result = findMatch(0, company, ans)[1]
-    say(result)
-    choice = ask("found \"" + result + "\", is that useful? Type customer service or choices, if not.\n", {
-        "choices":"yes, customer service, choices"})
+    T.say(result)
+    choice = T.ask(say="found \"" + result + "\", is that useful? Type customer service or choices, if not.\n",
+       T.Choices("['yes', 'customer service', 'choices']").obj)
     if choice.value == "yes":
         inputSequence(result)
     elif choice.value == "customer service":
         inputSequence(company["customer service"])
     else:
-        say("Here are your choices:")
+        T.say("Here are your choices:")
 def findIndex(words, phrase):
     match = ""
     for word in words:
@@ -66,17 +66,15 @@ place = findIndex(["call", "with"], init.split())
 say("Welcome to AuTo&T.")
 
 while not place:
-    ask("", {"choices":"[ANY]"})
-    place = ask("Who do you want us to call?\n", {"choices":"[ANY]"}).value
+    T.ask(say="", T.Choices("[ANY]"))
+    place = T.ask(say="Who do you want us to call?\n", T.Choices("[ANY]")).value
 while not time:
-    ask("", {"choices":"[ANY]"})
-    time = ask("At what time do you want us to set up the phone call?\n", {"choices":"[ANY]"}).value
+    T.ask(say="", T.Choices("[ANY]"))
+    time = T.ask(say="At what time do you want us to set up the phone call?\n", T.Choices("[ANY]")).value
     
-ask("", {"choices":"[ANY]"})
+ask(say="", T.Choices("[ANY]"))
 if place in mappings:
-    ask("What were you looking to do with " + place + " at " + time + "?\n", {
-        "choices":"[ANY]",
-        "onChoice": answerHandler
-    })
+    T.ask(say="What were you looking to do with " + place + " at " + time + "?\n", T.Choices("[ANY]"))
+    T.on(event="continue", next=answerHandler)
 else:
     say("I've never encountered this company so you might expereince some extra setup time")
