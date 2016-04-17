@@ -40,7 +40,7 @@ def hello():
 @app.route("/transcribe", methods=["POST"])
 def transcribe():
     fb = fb.FirebaseApplication("https://autotapp.firebaseio.com", None)
-    posted = fb.post('/transcriptions', request.form, {'print': 'pretty'})
+    posted = fb.post('/transcriptions', request.get_json(), {'print': 'pretty'}, {'Content-Type': 'application/json'})
     pass
 
 
