@@ -36,8 +36,8 @@ def hello():
     #     )
 
     init = str(S.initialText)
-    # time = findIndex(["at"], init.split())
-    # place = findIndex(["call", "with"], init.split())
+    time = findIndex(["at"], init.split())
+    place = findIndex(["call", "with"], init.split())
 
     # say("Welcome to AuTo&T.")
 
