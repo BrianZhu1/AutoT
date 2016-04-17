@@ -1,7 +1,8 @@
 import requests
 import os
 from flask import Flask
-from tropo_webapi_python import Tropo as t
+from firebase import firebase as fb
+# from tropo_webapi_python import Tropo as t
 app = Flask(__name__)
 
 junk = """
@@ -38,11 +39,10 @@ def hello():
 
 
 # THE FOLLOWING RESIDES IN ITS OWN APPLICATION.
-@app.route("/")
+@app.route("/transcribe", methods=["POST"])
 def transcribe():
-
-    # requests.get(http_string)
-    requests.post(url, data=json.dumps(transcribe_body), headers=headers)
+    fb = fb.FirebaseApplication("https://autotapp.firebaseio.com", None)
+    posted = fb.post('/transcriptions', request.form, {'print': 'pretty'})
     return "Hello from Python!"
 
 @app.route("/transcribe")
