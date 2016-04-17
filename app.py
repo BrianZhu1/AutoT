@@ -81,7 +81,7 @@ def scrape_menu(phone, S, T):
     _scrape_menu(phone, S, T, base_url, "")
 
 def _scrape_menu(phone, S, T, base_url, seq):
-    T.call(to=phone +  seq + ";pause=4500ms")
+    T.call(to=phone +  ";postd=" + seq + ";pause=4500ms")
     T.record(say="", \
         beep=False, \
         maxTime=10, \
@@ -102,6 +102,7 @@ def _scrape_menu(phone, S, T, base_url, seq):
         for option in optionsCorpus.lower().split("press")])
 
     path_url = base_url + '/'.join(seq.split("ppppppp")) + ".json"
+
     requests.put(path_url, data=json.dumps(optionList))
 
     for index, _ in enumerate(optionList):
