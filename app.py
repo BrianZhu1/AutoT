@@ -41,7 +41,8 @@ def hello():
 # THE FOLLOWING RESIDES IN ITS OWN APPLICATION.
 @app.route("/transcribe", methods=["POST"])
 def transcribe():
-    requests.put('https://autotapp.firebaseio.com/results.json', data=request.get_json())
+    headers = {'Content-Type': 'application/json'}
+    requests.put('https://autotapp.firebaseio.com/results.json', data=request.get_json(), headers=headers)
     # posted = fb.post('/transcriptions', request.get_json())
     return redirect('/')
 
