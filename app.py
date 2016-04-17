@@ -101,12 +101,11 @@ def _scrape_menu(phone, S, T, base_url, seq):
     optionList = filter(None, [option.strip(" , or and").split()[1:] \
         for option in optionsCorpus.lower().split("press")])
 
-    patch_url = base_url + '/'.join(seq.split("ppppppp")) + ".json"
-    print path_url
+    path_url = base_url + '/'.join(seq.split("ppppppp")) + ".json"
     requests.put(path_url, data=json.dumps(optionList))
 
     for index, _ in enumerate(optionList):
-        _scrape_menu(phone, S, T, base_url, seq + "ppppppp" + index)
+        _scrape_menu(phone, S, T + 1, base_url, seq + "ppppppp" + str(index))
 
 
 
