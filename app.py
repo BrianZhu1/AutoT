@@ -41,21 +41,21 @@ def hello():
 
     T.say("Welcome to AuTo&T.")
 
-    while not place:
-        T.ask(Choices("[ANY]").obj, say="")
-        place = T.ask(Choices("[ANY]").obj, say="Who do you want us to call?\n").value
-    while not time:
-        T.ask( Choices("[ANY]").obj, say="")
-        time = T.ask(Choices("[ANY]").obj, say="At what time do you want us to set up the phone call?\n").value
+    # while not place:
+    #     T.ask(Choices("[ANY]").obj, say="")
+    #     place = T.ask(Choices("[ANY]").obj, say="Who do you want us to call?\n").value
+    # while not time:
+    #     T.ask( Choices("[ANY]").obj, say="")
+    #     time = T.ask(Choices("[ANY]").obj, say="At what time do you want us to set up the phone call?\n").value
         
-    T.ask( Choices("[ANY]").obj, say="")
-    if place in mappings:
-        T.ask( Choices("[ANY]").obj, say="What were you looking to do with " + place + " at " + time + "?\n")
-        T.on(event="continue", next=answerHandler)
-    else:
-        T.say("I've never encountered this company so you might expereince some extra setup time")
+    # T.ask( Choices("[ANY]").obj, say="")
+    # if place in mappings:
+    #     T.ask( Choices("[ANY]").obj, say="What were you looking to do with " + place + " at " + time + "?\n")
+    #     T.on(event="continue", next=answerHandler)
+    # else:
+    #     T.say("I've never encountered this company so you might expereince some extra setup time")
     
-    traverse_menu(number, S, T)
+    # traverse_menu(number, S, T)
 
     return T.RenderJson()
 
