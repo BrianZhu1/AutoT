@@ -41,7 +41,7 @@ def hello():
 def transcribe():
     # fb = fb.FirebaseApplication("https://autotapp.firebaseio.com", None)
     # posted = fb.post('/transcriptions', request.form, {'print': 'pretty'})
-    return requests.get_json()['test']
+    return requests.get_json()
 
 
 if __name__ == "__main__":
