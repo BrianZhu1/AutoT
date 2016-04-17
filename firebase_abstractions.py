@@ -5,10 +5,10 @@ baseURL = "https://autotapp.firebaseio.com/"
 
 # Helper functions to ease CRUD functions to DB.
 
-def fetchMenu(companyName):
+def fetchMenu(companyNumber):
 	optionData = requests.get(baseURL + "menu.json").json()
-	if companyName in optionData:
-		return optionData[companyName]
+	if companyNumber in optionData:
+		return optionData[companyNumber]
 	else:
 		return None
 
