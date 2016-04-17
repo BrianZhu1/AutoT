@@ -77,7 +77,6 @@ def traverse_menu(phone, S, T): #it will find the next level of dtmf tones
     # TODO: some logic may be needed extra to authenticate.
 def scrape_menu(phone, S, T):
     base_url = "https://autotapp.firebaseio.com/menus/bot/"
-    T.call(to=phone + ";pause=4500ms")
 
     _scrape_menu(phone, S, T, base_url, "")
 
