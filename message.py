@@ -43,7 +43,7 @@ def answerHandler(ans):
     company = mappings[place]
     path, result = findMatch(0, company, ans)[1]
     T.say(result)
-    choice = T.ask(T.Choices("['yes', 'customer service', 'choices']").obj, say="found \"" + result + "\", is that useful? Type customer service or choices, if not.\n")
+    choice = T.ask(Choices("['yes', 'customer service', 'choices']").obj, say="found \"" + result + "\", is that useful? Type customer service or choices, if not.\n")
     if choice.value == "yes":
         inputSequence(result)
     elif choice.value == "customer service":
@@ -65,15 +65,15 @@ def findIndex(words, phrase):
 # say("Welcome to AuTo&T.")
 
 # while not place:
-#     T.ask(T.Choices("[ANY]"), say="")
-#     place = T.ask( T.Choices("[ANY]"), say="Who do you want us to call?\n").value
+#     T.ask(Choices("[ANY]"), say="")
+#     place = T.ask( Choices("[ANY]"), say="Who do you want us to call?\n").value
 # while not time:
-#     T.ask(T.Choices("[ANY]"), say="")
-#     time = T.ask( T.Choices("[ANY]"), say="At what time do you want us to set up the phone call?\n").value
+#     T.ask(Choices("[ANY]"), say="")
+#     time = T.ask( Choices("[ANY]"), say="At what time do you want us to set up the phone call?\n").value
     
-# ask(T.Choices("[ANY]"), say="")
+# ask(Choices("[ANY]"), say="")
 # if place in mappings:
-#     T.ask( T.Choices("[ANY]"), say="What were you looking to do with " + place + " at " + time + "?\n")
+#     T.ask( Choices("[ANY]"), say="What were you looking to do with " + place + " at " + time + "?\n")
 #     T.on(event="continue", next=answerHandler)
 # else:
 #     say("I've never encountered this company so you might expereince some extra setup time")
