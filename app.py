@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route("/")
 def hello():
 	t = Tropo()
-	# callerID = currentCall.callerID
+	# callerID = curre`ntCall.callerID
 
 	t.say("Welcome to speed therapy!")
 	t.record("Tell us how you feel in fifteen minutes or less!", {
@@ -18,11 +18,11 @@ def hello():
 	    }
 	)
 	
-	return render_template('testout.html')
+	return 'hello world'
 
-@app.route("/transcribed_audio", methods=["POST"])
-def transcribed_audio():
-	return request.json
+# @app.route("/transcribed_audio", methods=["POST"])
+# def transcribed_audio():
+# 	return request.json
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
