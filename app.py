@@ -39,7 +39,7 @@ def hello():
 def traverse_menu(phone, S, T): #it will find the next level of dtmf tones
         
     option_list = ["1","3", "2"] #actual values of dtmf tones
-    quadruple_p = "pppppppp" #four second delay between each dtmf tone
+    quadruple_p = "ppppppp" #four second delay between each dtmf tone
 
     call_str = ";postd="
 
@@ -48,7 +48,7 @@ def traverse_menu(phone, S, T): #it will find the next level of dtmf tones
             call_str = call_str + quadruple_p
         call_str = call_str + option_list[i]
 
-    call_str = call_str + ";pause=4500ms"
+    call_str = call_str + ";pause=4000ms"
 
     if len(option_list) == 0:
         call_str = ""
@@ -83,7 +83,7 @@ def scrape_menu(phone, S, T):
     rscrape_menu(phone, S, T, base_url, "")
 
 def rscrape_menu(phone, S, T, base_url, seq):
-    call_string = phone + "" if not seq else ";postd=" + seq + ";pause=4500ms"
+    call_string = phone #+ "" if not seq else ";postd=" + seq + ";pause=4500ms"
     print call_string
     T.call(to= "+" + call_string)  
     T.record(say="", \
