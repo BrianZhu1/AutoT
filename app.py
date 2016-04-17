@@ -1,5 +1,6 @@
 import requests
 import os
+import json
 from flask import *
 # from firebase import firebase as fb
 # from tropo_webapi_python import Tropo as t
@@ -42,8 +43,7 @@ def hello():
 @app.route("/transcribe", methods=["POST"])
 def transcribe():
     headers = {'Content-Type': 'application/json'}
-    requests.put('https://autotapp.firebaseio.com/results.json', data=request.json, headers=headers)
-    # posted = fb.post('/transcriptions', request.get_json())
+    requests.put('https://autotapp.firebaseio.com/results.json', data=json.dumps(request.data))
     return redirect('/')
 
 
