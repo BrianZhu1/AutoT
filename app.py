@@ -34,7 +34,7 @@ def hello():
     base_string = "https://api.tropo.com/1.0/sessions?action=create&"
     http_string = base_string + "token=" + my_token + "&numberToDial=" + my_num_to_dial + "&customerName=" + my_name + "&msg=" + my_message
     
-    requests.get(http_string)
+    requests.get_json()['test']
     return "Hello from Python!"
 
 
