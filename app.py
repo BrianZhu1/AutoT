@@ -1,6 +1,7 @@
 import requests
 import os
 from flask import Flask
+from tropo_webapi_python import Tropo as t
 app = Flask(__name__)
 
 junk = """
@@ -14,7 +15,7 @@ def hello():
         maxTime:900,
         transcriptionOutURI: "http://autotapp.herokuapp.com/transcribed_audio",
         transcriptionOutFormat: 'json'
-        }
+        }   
     );
 
 @app.route("/transcribed_audio")
@@ -34,6 +35,20 @@ def hello():
     
     requests.get(http_string)
     return "Hello from Python!"
+
+
+# THE FOLLOWING RESIDES IN ITS OWN APPLICATION.
+@app.route("/")
+def transcribe():
+
+    # requests.get(http_string)
+    requests.post(url, data=json.dumps(transcribe_body), headers=headers)
+    return "Hello from Python!"
+
+@app.route("/transcribe")
+def transcribe():
+    pass
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
