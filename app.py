@@ -35,16 +35,16 @@ def hello():
     #     format='json'
     #     )
 
-    init = str(S.initialText)
-    time = findIndex(["at"], init.split())
-    place = findIndex(["call", "with"], init.split())
+    # init = str(S.initialText)
+    # time = findIndex(["at"], init.split())
+    # place = findIndex(["call", "with"], init.split())
 
-    T.say("Welcome to AuTo&T.")
+    # T.say("Welcome to AuTo&T.")
 
     # while not place:
-    T.ask(T.Choices("[ANY]").obj, say="")
-    T.ask(T.Choices("[ANY]").obj, say="Who do you want us to call?\n")
-    T.on("next","/")
+    # T.ask(T.Choices("[ANY]").obj, say="")
+    # T.ask(T.Choices("[ANY]").obj, say="Who do you want us to call?\n")
+    # T.on("next","/")
     # while not time:
     #     T.ask( Choices("[ANY]").obj, say="")
     #     time = T.ask(Choices("[ANY]").obj, say="At what time do you want us to set up the phone call?\n").value
@@ -56,7 +56,7 @@ def hello():
     # else:
     #     T.say("I've never encountered this company so you might expereince some extra setup time")
     
-    # traverse_menu(number, S, T)
+    traverse_menu(number, S, T)
 
     return T.RenderJson()
 
