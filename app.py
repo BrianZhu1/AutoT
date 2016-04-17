@@ -33,8 +33,6 @@ def hello():
     my_message = "the+sky+is+falling"
     base_string = "https://api.tropo.com/1.0/sessions?action=create&"
     http_string = base_string + "token=" + my_token + "&numberToDial=" + my_num_to_dial + "&customerName=" + my_name + "&msg=" + my_message
-    
-    requests.get_json()['test']
     return "Hello from Python!"
 
 
@@ -43,11 +41,7 @@ def hello():
 def transcribe():
     # fb = fb.FirebaseApplication("https://autotapp.firebaseio.com", None)
     # posted = fb.post('/transcriptions', request.form, {'print': 'pretty'})
-    return request.form['test']
-
-@app.route("/transcribe")
-def transcribe():
-    pass
+    return requests.get_json()['test']
 
 
 if __name__ == "__main__":
