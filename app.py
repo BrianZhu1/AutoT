@@ -1,6 +1,7 @@
 import requests
 import os
 import json
+from time import sleep
 from flask import *
 from firebase_abstractions import *
 from tropo_webapi_python import Tropo, Session
@@ -31,32 +32,38 @@ def hello():
         )
     return t.RenderJson()
 
-def scrape_menu(phone, S, T): #it will find the next level of dtmf tones
+# def scrape_menu(phone, S, T): #it will find the next level of dtmf tones
         
-    option_list = ["1","2", "3"] #actual values of dtmf tones
-    quadruple_p = "pppp" #four second delay between each dtmf tone
+#     option_list = ["1","2", "3"] #actual values of dtmf tones
+#     quadruple_p = "pppp" #four second delay between each dtmf tone
 
-    call_str = ";postd="
+#     call_str = ";postd="
 
-    for(i in range(0, len(option_list))):
-        if(i != 0 ):
-            call_str = call_str + quadruple_p
-        call_str = call_str + option_list[i]
+#     for(i in range(0, len(option_list))):
+#         if(i != 0 ):
+#             call_str = call_str + quadruple_p
+#         call_str = call_str + option_list[i]
 
-    call_str = call_str + ";pause=2000ms"
+#     call_str = call_str + ";pause=2000ms"
 
-    if(len(option_list) == 0):
-        call_str = ""
+#     if(len(option_list) == 0):
+#         call_str = ""
 
-    T.call(to=phone + call_str) #call_str = ;postd=1pppp2;pause=2000ms
+#     T.call(to=phone + call_str) #call_str = ;postd=1pppp2;pause=2000ms
 
-    #pushes the data to the server
-    T.record(say="", \
-        beep=False, \
-        maxTime=8, \
-        transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
-        format='json'
-        )
+#     #pushes the data to the server
+#     T.record(say="", \
+#         beep=False, \
+#         maxTime=8, \
+#         transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
+#         format='json'
+#         )
+
+#     sleep(3000)
+
+#     optionsCorpus = requests.get('https://autotapp.firebaseio.com/results.json').json()
+#     optionList = filter(None, [option.strip(" , or and").split()[1:] \
+#         for option in optionsCorpus.lower().split("press")])
 
 
     #somehow find out whether the 
