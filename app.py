@@ -1,11 +1,11 @@
 import requests
 import os
 from flask import *
-from firebase import firebase as fb
+# from firebase import firebase as fb
 # from tropo_webapi_python import Tropo as t
 app = Flask(__name__)
 
-app.run(debug=True)
+# app.run(debug=True)
 
 junk = """
 @app.route("/")
@@ -41,10 +41,9 @@ def hello():
 # THE FOLLOWING RESIDES IN ITS OWN APPLICATION.
 @app.route("/transcribe", methods=["POST"])
 def transcribe():
-    fb = fb.FirebaseApplication("https://autotapp.firebaseio.com", None)
-    raise Exception('In transcribe POST')
-    posted = fb.post('/transcriptions', request.get_json())
-    return render_template('testout.html', jsoncode = request.get_json())
+    requests.put('https://autotapp.firebaseio.com/results.json', data=request.get_json())
+    # posted = fb.post('/transcriptions', request.get_json())
+    return redirect('/')
 
 
 if __name__ == "__main__":
