@@ -6,7 +6,7 @@ from flask import *
 from firebase_abstractions import *
 from tropo_webapi_python import Tropo, Session
 from message import *
-import logging
+import logging, sys
 
 app = Flask(__name__, static_url_path='')
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
