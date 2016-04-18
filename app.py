@@ -4,9 +4,13 @@ import json
 from time import sleep
 from flask import *
 from firebase_abstractions import *
-from tropo_webapi_python import Tropo, Session, Choices
+from tropo_webapi_python import Tropo, Session
 from message import *
+import logging
+
 app = Flask(__name__, static_url_path='')
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 T = S = None
 
@@ -24,7 +28,7 @@ def hello():
 
     S = Session(request.data)
     T = Tropo()
-    number = "+18016106014"
+    number = "+14084827871"
 
     # T.call(to=number)
     # T.say("Welcome to speed therapy!")
@@ -35,28 +39,26 @@ def hello():
     #     format='json'
     #     )
 
-    # init = str(S.initialText)
-    # time = findIndex(["at"], init.split())
-    # place = findIndex(["call", "with"], init.split())
+    init = str(S.initialText)
+    time = findIndex(["at"], init.split())
+    place = findIndex(["call", "with"], init.split())
 
-    # T.say("Welcome to AuTo&T.")
+    T.say("Welcome to AuTo&T.")
 
-    # while not place:
-    # T.ask(T.Choices("[ANY]").obj, say="")
-    # T.ask(T.Choices("[ANY]").obj, say="Who do you want us to call?\n")
-    # T.on("next","/")
-    # while not time:
-    #     T.ask( Choices("[ANY]").obj, say="")
-    #     time = T.ask(Choices("[ANY]").obj, say="At what time do you want us to set up the phone call?\n").value
-        
-    # T.ask( Choices("[ANY]").obj, say="")
-    # if place in mappings:
-    #     T.ask( Choices("[ANY]").obj, say="What were you looking to do with " + place + " at " + time + "?\n")
-    #     T.on(event="continue", next=answerHandler)
-    # else:
-    #     T.say("I've never encountered this company so you might expereince some extra setup time")
+    while not place:
+        T.ask(Choices("[ANY]"), say="")
+        place = T.ask(Choices("[ANY]"), say="Who do you want us to call?\n").value
+    while not time:
+        T.ask( Choices("[ANY]"), say="")
+        time = T.ask(Choices("[ANY]"), say="At what time do you want us to set up the phone call?\n").value
+    T.ask( Choices("[ANY]"), say="")
+    if place in mappings:
+        T.ask( Choices("[ANY]"), say="What were you looking to do with " + place + " at " + time + "?\n")
+        T.on(event="continue", next=answerHandler)
+    else:
+        T.say("I've never encountered this company so you might expereince some extra setup time")
     
-    traverse_menu(number, S, T)
+    # scrape_menu(number, S, T)
 
     return T.RenderJson()
 
@@ -110,7 +112,7 @@ def rscrape_menu(phone, S, T, base_url, seq):
     call_string = phone + "" if not seq else ";postd=" + seq + ";pause=4500ms"
     print call_string
     T.call(to= "+" + call_string)  
-    T.record(say="", \
+    T.record(say="hello", \
         beep=False, \
         maxTime=10, \
         transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
