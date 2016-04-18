@@ -4,7 +4,7 @@ import json
 from time import sleep
 from flask import *
 from firebase_abstractions import *
-from tropo_webapi_python import Tropo, Session
+from tropo_webapi_python import Tropo, Session, Choices
 from message import *
 import logging, sys
 
