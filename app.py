@@ -37,12 +37,13 @@ def hello():
     #     format='json'
     #     )
     init = str(S.initialText)
+    callerID = S["from"]["id"]
     time = findIndex(["at"], init.split())
     place = findIndex(["call", "with"], init.split())
 
     T.say("Welcome to AuTo&T.")
 
-    sms_waiting_for = requests.get('https://autotapp.firebaseio.com/numbers/' + S.callerID + '/sms_state.json') # string hash
+    sms_waiting_for = requests.get('https://autotapp.firebaseio.com/numbers/' + callerID + '/sms_state.json') # string hash
     if time and place:
         if place in mappings:
             T.say("What were you looking to do with " + place + " at " + time + "")
@@ -50,8 +51,8 @@ def hello():
             T.say("I've never encountered this company so you might experience some extra setup time")
     else:
         T.say("Who do you want us to call and at what time?\n")
-        requests.put('https://autotapp.firebaseio.com/numbers/' + S.callerID + '/sms_state.json', data=json.dumps("place+time"))
-        requests.put('https://autotapp.firebaseio.com/numbers/' + S.callerID + '/sms_msg.json', data=json.dumps(init))
+        requests.put('https://autotapp.firebaseio.com/numbers/' + callerID + '/sms_state.json', data=json.dumps("place+time"))
+        requests.put('https://autotapp.firebaseio.com/numbers/' + callerID + '/sms_msg.json', data=json.dumps(init))
     
     # scrape_menu(number, S, T)
 
