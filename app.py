@@ -45,6 +45,7 @@ def hello():
 
     sms_waiting_for = requests.get('https://autotapp.firebaseio.com/numbers/' + callerID + '/sms_state.json') # string hash
     if time and place:
+        requests.put('https://autotapp.firebaseio.com/numbers/' + callerID + '/sms_state.json', data=json.dumps(""))
         if place in mappings:
             T.say("What were you looking to do with " + place + " at " + time + "")
         else:
