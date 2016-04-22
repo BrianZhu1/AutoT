@@ -28,8 +28,6 @@ def hello():
 
     S = Session(request.data)
     T = Tropo()
-    number = "+14084827871"
-
     # T.call(to=number)
     # T.say("Welcome to speed therapy!")
     # T.record(say="Tell us how you feel in fifteen minutes or less!", \
@@ -38,25 +36,22 @@ def hello():
     #     transcription= {"url": "http://autotapp.herokuapp.com/transcribe"}, \
     #     format='json'
     #     )
-
     init = str(S.initialText)
     time = findIndex(["at"], init.split())
     place = findIndex(["call", "with"], init.split())
 
     T.say("Welcome to AuTo&T.")
 
-    while not place:
-        T.ask(Choices("[ANY]"), say="")
-        place = T.ask(Choices("[ANY]"), say="Who do you want us to call?\n").value
-    while not time:
-        T.ask( Choices("[ANY]"), say="")
-        time = T.ask(Choices("[ANY]"), say="At what time do you want us to set up the phone call?\n").value
-    T.ask( Choices("[ANY]"), say="")
-    if place in mappings:
-        T.ask( Choices("[ANY]"), say="What were you looking to do with " + place + " at " + time + "?\n")
-        T.on(event="continue", next=answerHandler)
+    sms_waiting_for = requests.get('https://autotapp.firebaseio.com/numbers/' + S.callerID + '/sms_state.json') # string hash
+    if time and place:
+        if place in mappings:
+            T.say("What were you looking to do with " + place + " at " + time + "")
+        else:
+            T.say("I've never encountered this company so you might experience some extra setup time")
     else:
-        T.say("I've never encountered this company so you might expereince some extra setup time")
+        T.say("Who do you want us to call and at what time?\n")
+        requests.put('https://autotapp.firebaseio.com/numbers/' + S.callerID + '/sms_state.json', data=json.dumps("place+time"))
+        requests.put('https://autotapp.firebaseio.com/numbers/' + S.callerID + '/sms_msg.json', data=json.dumps(init))
     
     # scrape_menu(number, S, T)
 
@@ -143,7 +138,6 @@ def rscrape_menu(phone, S, T, base_url, seq):
 
 @app.route("/transcribe", methods=["POST"])
 def transcribe():
-    headers = {'Content-Type': 'application/json'}
     print request.data
     requests.put('https://autotapp.firebaseio.com/results.json', data=json.dumps(request.json["result"]["transcription"]))
     return redirect('/')
