@@ -14,7 +14,7 @@ app.logger.setLevel(logging.ERROR)
 
 T = S = None
 
-@app.route("/", methods=["POST"])
+@app.route("/", methods=["POST", "GET"])
 def hello():
     # This main endpoint receives the invoking user action: text message.
     # Needs: # of company? are options from company already cached?
@@ -24,7 +24,9 @@ def hello():
     
     # calls function to schedule outgoing calls
     # TODO: how cronjob?
-    
+    if request.method == "GET":
+        return "Hello World!!!!"
+
 
     S = Session(request.data)
     T = Tropo()
@@ -146,5 +148,5 @@ def transcribe():
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host='127.0.0.1', port=port)
