@@ -37,8 +37,7 @@ def hello():
     #     format='json'
     #     )
     init = str(S.initialText)
-    callerID = S.fromaddress
-    print callerID
+    callerID = S.fromaddress["id"]
     time = findIndex(["at"], init.split())
     place = findIndex(["call", "with"], init.split())
 
